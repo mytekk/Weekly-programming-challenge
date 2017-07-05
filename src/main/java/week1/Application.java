@@ -7,6 +7,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
+
         System.out.println("kanapeczka: " + Sandwich.getSandwich("kanapeczka"));
         System.out.println("------------");
         System.out.println("chlebjajkochleb: " + Sandwich.getSandwich("chlebjajkochleb"));
@@ -20,6 +21,9 @@ public class Application {
         System.out.println("xxchlebwartoscchleb: " + Sandwich.getSandwich("xxchlebwartoscchleb"));
         System.out.println("------------");
         System.out.println("chlebwartoscchlebyy: " + Sandwich.getSandwich("chlebwartoscchlebyy"));
+        System.out.println("------------");
+        System.out.println("xxchlebchlebyy: " + Sandwich.getSandwich("xxchlebchlebyy"));
+
     }
 
 

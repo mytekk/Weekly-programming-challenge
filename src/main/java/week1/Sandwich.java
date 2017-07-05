@@ -14,23 +14,34 @@ import java.util.stream.Collectors;
  */
 public class Sandwich {
 
+    public static final String CHLEB = "chleb";
 
-    public static String getSandwich(String ingredients) {
+    public static String getSandwich(String input) {
         String valueToReturn = "";
 
-        ingredients.toLowerCase();
+        input.toLowerCase();
 
-        int count = StringUtils.countMatches(ingredients, "chleb");
+        int count = StringUtils.countMatches(input, CHLEB);
 
         if (count >= 2) {
             //usuwam wszystko to co jest do pierwszego slowa chleb
+            int firstCut = input.indexOf(CHLEB);
 
+            if (firstCut != -1) {
+                firstCut += CHLEB.length();
+                input = input.substring(firstCut);
+            }
 
-            //usuwam od konca wszystko do pierwszego slowa chleb
+            //usuwam wszystko od ostatniego slowa chleb do konca
+            int lastCut = input.lastIndexOf(CHLEB);
 
-            //dziele stringa pomiedzy slowami chleb
-            String[] split = ingredients.split("chleb");
-            System.out.println("Splitted table: " + Arrays.toString(split));
+            if (lastCut != -1) {
+                input = input.substring(0, lastCut);
+            }
+
+            //dziele stringa pomiedzy slowami chleb (bo moze byc wiele slow chleb w stringu
+            // i tym samym wiele wartosci, ktore sa pomiedzy dwoma slowami chleb)
+            String[] split = input.split(CHLEB);
 
             //zamieniam na liste
             List<String> strings = Arrays.asList(split);
@@ -40,10 +51,11 @@ public class Sandwich {
                     .filter(e -> (e != null && e.length() > 0))
                     .collect(Collectors.toList());
 
-            System.out.println("Lista: " + collect.toString());
-
-
-            valueToReturn = collect.get(0);
+            //zwracam pierwszy element listy, o ile lista nie jest pusta
+            //(bedzie pusta, jesli w wejsciowym stringu pomiedzy slowami chleb nie bedzie nic)
+            if (!collect.isEmpty()) {
+                valueToReturn = collect.get(0);
+            }
         }
 
         return valueToReturn;

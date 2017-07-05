@@ -30,6 +30,58 @@ public class SandwichTest {
     }
 
     @Test
+    public void shouldReturnValueForSimpleSandwich() throws Exception {
+        //given
+        String simpleSandwich = "chlebserchleb";
+        String expectedResult = "ser";
+
+        //when
+        String result = Sandwich.getSandwich(simpleSandwich);
+
+        //then
+        Assert.assertTrue("Nie zwraca właściwej wartości dla prostej kanapki.", expectedResult.equals(result));
+    }
+
+    @Test
+    public void shouldReturnValueForDirtySandwich() throws Exception {
+        //given
+        String dirtySandwich = "xxchlebserchlebyy";
+        String expectedResult = "ser";
+
+        //when
+        String result = Sandwich.getSandwich(dirtySandwich);
+
+        //then
+        Assert.assertTrue("Nie zwraca właściwej wartości dla prostej kanapki z dodatkami z przodu i tyłu.", expectedResult.equals(result));
+    }
+
+    @Test
+    public void shouldReturnValueForDoubledChlebSandwich() throws Exception {
+        //given
+        String doubledChlebSandwich = "chlebchlebserchlebchleb";
+        String expectedResult = "ser";
+
+        //when
+        String result = Sandwich.getSandwich(doubledChlebSandwich);
+
+        //then
+        Assert.assertTrue("Nie zwraca właściwej wartości dla kanapki z podwojnymi warstwami chleba.", expectedResult.equals(result));
+    }
+
+    @Test
+    public void shouldReturnValueForOddNumberOfChlebSandwich() throws Exception {
+        //given
+        String oddChlebSandwich = "chlebchlebserchleb";
+        String expectedResult = "ser";
+
+        //when
+        String result = Sandwich.getSandwich(oddChlebSandwich);
+
+        //then
+        Assert.assertTrue("Nie zwraca właściwej wartości dla kanapki z podwojnymi warstwami chleba.", expectedResult.equals(result));
+    }
+
+    @Test
     public void shouldReturnEmptyStringWhenSandwichDoesNotContainChleb() {
         //given
         String sandwichWithoutChleb = "xxszynkaxxcokolwiek";
@@ -56,7 +108,7 @@ public class SandwichTest {
     @Test
     public void shouldReturnEmptyStringWhenSandwichHasOnlyOneChleb() {
         //given
-        String sandwichWitchOnlyOneChleb = "xxchlebchlebyy";
+        String sandwichWitchOnlyOneChleb = "xxchlebyy";
 
         //when
         String result = Sandwich.getSandwich(sandwichWitchOnlyOneChleb);
@@ -77,5 +129,6 @@ public class SandwichTest {
         //then
         Assert.assertTrue("Nie zwraca poprawnej wartosci jeśli w kanapce jest więcej niż dwa chleby", valueToReturn.equals(result));
     }
+
 
 }
