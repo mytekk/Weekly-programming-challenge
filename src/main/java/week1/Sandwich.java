@@ -61,4 +61,30 @@ public class Sandwich {
         return valueToReturn;
     }
 
+    public static String getSandwichUsingRegexp(String input){
+        Matcher matcher = Pattern.compile("chleb(.*)chleb").matcher(input);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return "";
+    }
+
+    public static String getSandwichUsingIndexOf(String input) {
+        int firstIndex = input.indexOf(CHLEB);
+        int lastIndex = input.lastIndexOf(CHLEB);
+        if (firstIndex < lastIndex) {
+            return input.substring(firstIndex + CHLEB.length(), lastIndex);
+        }
+        return "";
+    }
+
+    public static  String getSandwichUsingSplit(String input){
+        String[] ingredients =input.split(CHLEB,-2);
+        if(ingredients.length>=3) {
+            String[] ingredientsInside = Arrays.copyOfRange(ingredients, 1, ingredients.length - 1);
+            return Arrays.stream(ingredientsInside).collect(Collectors.joining(CHLEB));
+        }
+        return "";
+    }
+
 }
